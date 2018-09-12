@@ -13,7 +13,6 @@
 		"react-router-redux": "^5.0.0-alpha.9",
 		"react-scripts": "1.1.4",
 		"redux": "^4.0.0",
-		"redux-devtools-extension": "^2.13.2",
 		"redux-saga": "^0.16.0"
 	},
 	"devDependencies": {
@@ -22,11 +21,16 @@
 		"eslint-plugin-import": "2.12.0",
 		"eslint-plugin-jest": "^21.17.0",
 		"eslint-plugin-jsx-a11y": "6.0.3",
-		"eslint-plugin-react": "7.9.1"
+		"eslint-plugin-react": "7.9.1",
+		"tailwindcss": "^0.6.5",
+		"postcss-cli": "^6.0.0",
+		"redux-devtools-extension": "^2.13.2",
+		"autoprefixer": "^9.1.5"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
+		"build:css": "postcss src/index.tailwind.css -o src/App.css",
+		"start": "npm run build:css && react-scripts start",
+		"build": "npm run build:css && react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
 	}

@@ -17,7 +17,11 @@ class MovieList extends Component {
 
 	render() {
 		console.log(this.props.movieList);
-		return <div style={styles.container}>hello</div>;
+		return (
+			<div style={styles.container} className="text-center">
+				hello
+			</div>
+		);
 	}
 }
 

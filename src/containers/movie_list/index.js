@@ -3,23 +3,35 @@ import { connect } from 'react-redux';
 
 import { getMovieList } from '../../actions';
 
-import styles from './styles';
-
+import './style.css';
 class MovieList extends Component {
 	constructor() {
 		super();
-		this.state = {};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getMovieList(1);
 	}
 
 	render() {
 		console.log(this.props.movieList);
 		return (
-			<div style={styles.container} className="text-center">
-				hello
+			<div>
+				<div className="header flex items-center shadow-md fixed">
+					<div className="back-button">
+						<img src="assets/Back.png" />
+					</div>
+					<div className="page-title">
+						{this.props.movieList.pages.title
+							? this.props.movieList.pages.title
+							: ''}
+					</div>
+					<div className="m-auto" />
+					<div className="search">
+						<img src="assets/search.png" />
+					</div>
+				</div>
+				<div />
 			</div>
 		);
 	}

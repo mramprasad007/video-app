@@ -1,0 +1,19 @@
+.header {
+	width: 100%;
+	background-color: black;
+	height: 56px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.back-button {
+	margin-left: 16px;
+	width: 16px;
+}
+.search {
+	margin-right: 16px;
+	width: 16px;
+}
+.page-title {
+	color: #ffffff;
+	margin-left: 16px;
+}

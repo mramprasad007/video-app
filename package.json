@@ -1,5 +1,5 @@
 {
-	"name": "diagnal-video-streaming-app",
+	"name": "video-streaming-app",
 	"version": "0.1.0",
 	"private": false,
 	"license": "MIT",
@@ -28,7 +28,7 @@
 		"autoprefixer": "^9.1.5"
 	},
 	"scripts": {
-		"build:css": "postcss src/index.tailwind.css -o src/App.css",
+		"build:css": "postcss src/index.tailwind.css -o src/index.css",
 		"start": "npm run build:css && react-scripts start",
 		"build": "npm run build:css && react-scripts build",
 		"test": "react-scripts test --env=jsdom",

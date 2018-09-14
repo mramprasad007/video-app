@@ -8,7 +8,8 @@ import store, { history } from './store';
 
 import MovieList from './containers/movie_list';
 
-import './App.css';
+import './index.css';
+import './app.css';
 
 export default class App extends Component {
 	render() {

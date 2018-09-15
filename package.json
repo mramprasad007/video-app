@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": false,
 	"license": "MIT",
+	"homepage": "http://mramprasad007.github.io/video-app",
 	"dependencies": {
 		"history": "^4.7.2",
 		"react": "^16.4.1",
@@ -16,22 +17,24 @@
 		"redux-saga": "^0.16.0"
 	},
 	"devDependencies": {
+		"autoprefixer": "^9.1.5",
 		"eslint": "4.19.1",
 		"eslint-config-airbnb": "^16.1.0",
 		"eslint-plugin-import": "2.12.0",
 		"eslint-plugin-jest": "^21.17.0",
 		"eslint-plugin-jsx-a11y": "6.0.3",
 		"eslint-plugin-react": "7.9.1",
-		"tailwindcss": "^0.6.5",
+		"gh-pages": "^1.2.0",
 		"postcss-cli": "^6.0.0",
 		"redux-devtools-extension": "^2.13.2",
-		"autoprefixer": "^9.1.5"
+		"tailwindcss": "^0.6.5"
 	},
 	"scripts": {
 		"build:css": "postcss src/index.tailwind.css -o src/index.css",
 		"start": "npm run build:css && react-scripts start",
 		"build": "npm run build:css && react-scripts build",
 		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"deploy": "gh-pages -d build"
 	}
 }

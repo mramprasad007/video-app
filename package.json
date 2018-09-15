@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": false,
 	"license": "MIT",
-	"homepage": "https://mramprasad007.github.io/video-app",
+	"homepage": "https://mramprasad007.github.io/video-app/",
 	"dependencies": {
 		"history": "^4.7.2",
 		"react": "^16.4.1",

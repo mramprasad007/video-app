@@ -1,4 +1,8 @@
-import { GET_MOVIE_LIST, SET_MOVIE_CONTENT_LIST } from '../constants';
+import {
+	GET_MOVIE_LIST,
+	SET_MOVIE_CONTENT_LIST,
+	SEARCH_MOVIE_CONTENT_LIST
+} from '../constants';
 
 export function getMovieList(pageNo) {
 	return {
@@ -13,6 +17,14 @@ export function setMovieContentList(movieContentList) {
 		type: SET_MOVIE_CONTENT_LIST,
 		payload: {
 			movieContentList: movieContentList
+		}
+	};
+}
+export function searchMovieList(searchText) {
+	return {
+		type: SEARCH_MOVIE_CONTENT_LIST,
+		payload: {
+			searchText: searchText
 		}
 	};
 }

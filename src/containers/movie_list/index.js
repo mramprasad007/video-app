@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getMovieList } from '../../actions';
+import { getMovieList, searchMovieList } from '../../actions';
 
 import './style.css';
 class MovieList extends Component {
@@ -42,37 +42,64 @@ class MovieList extends Component {
 							? this.props.movieList.pageName
 							: ''}
 					</div>
-					<div className="m-auto" />
+					<div>
+						<form className="w-full">
+							<div className="flex items-center border-b border-b-2 border-red py-1">
+								<input
+									className="appearance-none bg-transparent border-none w-full text-grey-light mr-3 py-1 px-2 leading-tight focus:outline-none"
+									type="text"
+									placeholder="Search"
+									aria-label="Full name"
+									onChange={e =>
+										this.props.searchMovieList(
+											e.target.value
+										)
+									}
+								/>
+							</div>
+						</form>
+					</div>
 					<div className="search">
 						<img src="assets/search.png" />
 					</div>
 				</div>
 				<div className="content flex flex-wrap" id="scroll-content">
 					{this.props.movieList.pages
-						? this.props.movieList.pages.map((item, index) => (
-								<div
-									className="movie-card w-1/3"
-									key={
-										this.props.movieList.pageNo + '' + index
-									}
-								>
-									<div className="movie-img">
-										<img
-											className="movie-img-src"
-											src={
-												'assets/' + item['poster-image']
-											}
-											onError={e => {
-												e.target.src =
-													'assets/placeholder_for_missing_posters.png';
-											}}
-										/>
+						? this.props.movieList.pages
+								.filter(item =>
+									item.name
+										.toLowerCase()
+										.startsWith(
+											this.props.movieList.searchText
+										)
+								)
+								.map((item, index) => (
+									<div
+										className="movie-card w-1/3"
+										key={
+											this.props.movieList.pageNo +
+											'' +
+											index
+										}
+									>
+										<div className="movie-img">
+											<img
+												className="movie-img-src"
+												src={
+													'assets/' +
+													item['poster-image']
+												}
+												onError={e => {
+													e.target.src =
+														'assets/placeholder_for_missing_posters.png';
+												}}
+											/>
+										</div>
+										<div className="movie-text">
+											{item.name}
+										</div>
 									</div>
-									<div className="movie-text">
-										{item.name}
-									</div>
-								</div>
-						  ))
+								))
 						: null}
 				</div>
 			</div>
@@ -85,7 +112,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	getMovieList: pageNo => dispatch(getMovieList(pageNo))
+	getMovieList: pageNo => dispatch(getMovieList(pageNo)),
+	searchMovieList: searchText => dispatch(searchMovieList(searchText))
 });
 
 export default connect(

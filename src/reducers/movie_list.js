@@ -1,6 +1,9 @@
-import { SET_MOVIE_CONTENT_LIST } from '../constants';
+import {
+	SET_MOVIE_CONTENT_LIST,
+	SEARCH_MOVIE_CONTENT_LIST
+} from '../constants';
 
-const initialState = { pageName: '', pages: [], pageNo: 1 };
+const initialState = { pageName: '', pages: [], pageNo: 1, searchText: '' };
 
 export default function movieListReducer(state = initialState, action) {
 	switch (action.type) {
@@ -13,6 +16,11 @@ export default function movieListReducer(state = initialState, action) {
 						.content
 				),
 				pageNo: state.pageNo + 1
+			};
+		case SEARCH_MOVIE_CONTENT_LIST:
+			return {
+				...state,
+				searchText: action.payload.searchText
 			};
 		default:
 			return state;

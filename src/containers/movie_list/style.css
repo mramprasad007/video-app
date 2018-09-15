@@ -20,6 +20,7 @@
 .content {
 	margin-top: 72px;
 	padding-left: 8px;
+	overflow-y: auto;
 }
 .movie-card {
 	padding-right: 8px;

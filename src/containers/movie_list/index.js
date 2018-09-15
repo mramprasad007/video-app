@@ -8,13 +8,28 @@ class MovieList extends Component {
 	constructor() {
 		super();
 	}
-
 	componentDidMount() {
-		this.props.getMovieList(1);
+		document.addEventListener('scroll', this.handleScroll);
+		this.props.getMovieList(this.props.movieList.pageNo);
 	}
 
+	componentWillUnmount() {
+		document.removeEventListener('scroll', this.handleScroll);
+	}
+
+	handleScroll = e => {
+		const scrollContent = document.getElementById('scroll-content');
+		if (
+			Math.floor(scrollContent.getBoundingClientRect().bottom) <=
+			window.innerHeight
+		) {
+			if (this.props.movieList.pageNo <= 3) {
+				this.props.getMovieList(this.props.movieList.pageNo);
+			}
+		}
+	};
+
 	render() {
-		console.log(this.props.movieList.pages);
 		return (
 			<div>
 				<div className="header flex items-center shadow-md fixed pin-t">
@@ -22,8 +37,8 @@ class MovieList extends Component {
 						<img src="assets/Back.png" />
 					</div>
 					<div className="page-title">
-						{this.props.movieList.pages
-							? this.props.movieList.pages.title
+						{this.props.movieList.pageName
+							? this.props.movieList.pageName
 							: ''}
 					</div>
 					<div className="m-auto" />
@@ -31,19 +46,13 @@ class MovieList extends Component {
 						<img src="assets/search.png" />
 					</div>
 				</div>
-				<div className="content flex flex-wrap">
-					{this.props.movieList.pages['content-items']
-						? this.props.movieList.pages[
-								'content-items'
-						  ].content.map((item, index) => (
+				<div className="content flex flex-wrap" id="scroll-content">
+					{this.props.movieList.pages
+						? this.props.movieList.pages.map((item, index) => (
 								<div
 									className="movie-card w-1/3"
 									key={
-										this.props.movieList.pages[
-											'page-num-requested'
-										] +
-										'' +
-										index
+										this.props.movieList.pageNo + '' + index
 									}
 								>
 									<div className="movie-img">
@@ -52,6 +61,10 @@ class MovieList extends Component {
 											src={
 												'assets/' + item['poster-image']
 											}
+											onError={e => {
+												e.target.src =
+													'assets/placeholder_for_missing_posters.png';
+											}}
 										/>
 									</div>
 									<div className="movie-text">

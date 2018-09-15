@@ -20,7 +20,7 @@ class MovieList extends Component {
 	handleScroll = e => {
 		const scrollContent = document.getElementById('scroll-content');
 		if (
-			Math.floor(scrollContent.getBoundingClientRect().bottom) <=
+			scrollContent.getBoundingClientRect().bottom - 250 <=
 			window.innerHeight
 		) {
 			if (this.props.movieList.pageNo <= 3) {
@@ -30,6 +30,7 @@ class MovieList extends Component {
 	};
 
 	render() {
+		console.log('triggered page', this.props.movieList.pageNo - 1);
 		return (
 			<div>
 				<div className="header flex items-center shadow-md fixed pin-t">
